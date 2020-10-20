@@ -1,0 +1,1 @@
+[] Aplicar clean code para os algoritmos da mathFunctions.js
