@@ -4,15 +4,16 @@ var bodyParser = require('body-parser');
 const {soma, testIfPrime, fibonacci} = require('./mathFunctions');
 
 
-
 app.use(bodyParser.json());
+
+
+//GET
 app.get('/', function (req, res) {
     res.send('Oi, mundo :-)');
 });
 
 
-
-
+//POST
 app.post('/soma', function (req, res) {
     var body = req.body;
     var resultado = soma(body.a, body.b);
@@ -33,8 +34,6 @@ app.post('/fibonacci', function (req, res) {
     res.send(`O elemento #${body.n} da sequência de Fibonacci é ${resultado}`);
     console.log(body);
 });
-
-
 
 
 //Servidor

@@ -12,7 +12,7 @@ function testIfPrime(n) {
         }
     }
 
-    if (quantity == 2) {
+    if (count == 2) {
         return "Sim";
     }
     else {
