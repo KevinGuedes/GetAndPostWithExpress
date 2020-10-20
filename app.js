@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-const {soma, testIfPrime, fibonacci} = require('./mathFunctions');
+const {soma, testIfPrime, fibonacci, multiplicacao} = require('./mathFunctions');
 
 
 app.use(bodyParser.json());
@@ -35,6 +35,12 @@ app.post('/fibonacci', function (req, res) {
     console.log(body);
 });
 
+app.post('/multiplicacao', function (req, res) {
+    var body = req.body;
+    var resultado = multiplicacao(body.a, body.b);
+    res.send(`${body.a} x ${body.b} = ${resultado}`);
+    console.log(body);
+});
 
 //Servidor
 var port = 3001;

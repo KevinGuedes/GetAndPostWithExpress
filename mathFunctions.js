@@ -1,7 +1,9 @@
 function soma(a, b) {
     return a + b;
 };
-
+function multiplicacao(a, b) {
+    return a * b;
+}
 
 function testIfPrime(n) {
     var count = 0;
@@ -37,5 +39,6 @@ function fibonacci(n) {
 module.exports = {
     soma,
     testIfPrime,
-    fibonacci
+    fibonacci,
+    multiplicacao
 }
