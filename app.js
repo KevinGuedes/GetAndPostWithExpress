@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-const {soma, testIfPrime, fibonacci, multiplicacao} = require('./mathFunctions');
-
+//const {soma, testIfPrime, fibonacci, multiplicacao} = require('./mathFunctions');
+const calc = require('./mathFunctions');
 
 app.use(bodyParser.json());
 
@@ -16,23 +16,24 @@ app.get('/', function (req, res) {
 //POST
 app.post('/soma', function (req, res) {
     var body = req.body;
-    var resultado = soma(body.a, body.b);
-    res.send(`O resultado da soma de ${body.a} e ${body.b} é ${resultado}`);
+    var resultado = calc.soma(body.a, body.b);
+    res.send(`${body.a} + ${body.b} = ${resultado}`);
     console.log(body);
 });
 
 app.post('/testIfPrime', function (req, res) {
-    var body = req.body;
-    var resultado = testIfPrime(body.n);
-    res.send(`O número ${body.n} é Primo? ${resultado}`);
-    console.log(body);
+    res.send(`${calc.testIfPrime(req.body.inputNumber)}`);
+    console.log(req.body);
 });
 
 app.post('/fibonacci', function (req, res) {
-    var body = req.body;
-    var resultado = fibonacci(body.n);
-    res.send(`O elemento #${body.n} da sequência de Fibonacci é ${resultado}`);
-    console.log(body);
+    res.send(`${calc.fibonacci(req.body.inputNumber)}`);
+    console.log(req.body);
+});
+
+app.post('/gcd', function (req, res) {
+    res.send(`${calc.gcd(body.firstNumber, req.body.secondNumber)}`);
+    console.log(req.body);
 });
 
 app.post('/multiplicacao', function (req, res) {
