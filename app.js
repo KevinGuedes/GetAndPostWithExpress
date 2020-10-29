@@ -15,10 +15,8 @@ app.get('/', function (req, res) {
 
 //POST
 app.post('/soma', function (req, res) {
-    var body = req.body;
-    var resultado = calc.soma(body.a, body.b);
-    res.send(`${body.a} + ${body.b} = ${resultado}`);
-    console.log(body);
+    res.send(`${req.body.firstNumber} + ${req.body.secondNumber} = ${calc.soma(req.body.firstNumber, req.body.secondNumber)}`);
+    console.log(req.body);
 });
 
 app.post('/testIfPrime', function (req, res) {
@@ -37,10 +35,8 @@ app.post('/gcd', function (req, res) {
 });
 
 app.post('/multiplicacao', function (req, res) {
-    var body = req.body;
-    var resultado = multiplicacao(body.a, body.b);
-    res.send(`${body.a} x ${body.b} = ${resultado}`);
-    console.log(body);
+    res.send(`${req.body.firstNumber} x ${req.body.secondNumber} = ${calc.multiplicacao(req.body.firstNumber, req.body.secondNumber)}`);
+    console.log(req.body);
 });
 
 //Servidor
