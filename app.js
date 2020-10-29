@@ -2,9 +2,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 //const {soma, testIfPrime, fibonacci, multiplicacao} = require('./mathFunctions');
-const calc = require('./mathFunctions');
+const calc = require('./mathFunctions'); // ./ para dizer que é 'irmão' do app.js, mesmo nível de pastas
+// ../ para voltar
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
+
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 //GET
@@ -12,30 +17,37 @@ app.get('/', function (req, res) {
     res.send('Oi, mundo :-)');
 });
 
+//989930202 
 
 //POST
 app.post('/soma', function (req, res) {
-    res.send(`${req.body.firstNumber} + ${req.body.secondNumber} = ${calc.soma(req.body.firstNumber, req.body.secondNumber)}`);
+    var firstNumber = parseFloat(req.body.firstNumber);
+    var secondNumber = parseFloat(req.body.secondNumber);
+    res.send(`${firstNumber} + ${secondNumber} = ${calc.soma(firstNumber, secondNumber)}`);
     console.log(req.body);
 });
 
 app.post('/testIfPrime', function (req, res) {
-    res.send(`${calc.testIfPrime(req.body.inputNumber)}`);
+    res.send(`${calc.testIfPrime(parseInt(req.body.inputNumber))}`);
     console.log(req.body);
 });
 
 app.post('/fibonacci', function (req, res) {
-    res.send(`${calc.fibonacci(req.body.inputNumber)}`);
+    res.send(`${calc.fibonacci(parseInt(req.body.inputNumber))}`);
     console.log(req.body);
 });
 
 app.post('/gcd', function (req, res) {
-    res.send(`${calc.gcd(body.firstNumber, req.body.secondNumber)}`);
+    var firstNumber = parseInt(req.body.firstNumber);
+    var secondNumber = parseInt(req.body.secondNumber);
+    res.send(`${calc.gcd(firstNumber, secondNumber)}`);
     console.log(req.body);
 });
 
 app.post('/multiplicacao', function (req, res) {
-    res.send(`${req.body.firstNumber} x ${req.body.secondNumber} = ${calc.multiplicacao(req.body.firstNumber, req.body.secondNumber)}`);
+    var firstNumber = parseFloat(req.body.firstNumber);
+    var secondNumber = parseFloat(req.body.secondNumber);
+    res.send(`${firstNumber} x ${secondNumber} = ${calc.multiplicacao(firstNumber, secondNumber)}`);
     console.log(req.body);
 });
 
