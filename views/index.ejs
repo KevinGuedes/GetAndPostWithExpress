@@ -6,10 +6,12 @@
     <title>Soma</title>
 </head>
 <body>
+    <h1><%= title %></h1>
     <form action="/soma" method="POST">
         <input type="number" name="firstNumber">
         <input type="number" name="secondNumber">
         <button type="submit">Enviar</button>
+        <p><%= result %></p>
         <!-- html envia tudo como texto na requisição -->
     </form>
 </body>

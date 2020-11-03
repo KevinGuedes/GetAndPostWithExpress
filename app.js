@@ -1,23 +1,27 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
+
 //const {soma, testIfPrime, fibonacci, multiplicacao} = require('./mathFunctions');
 const calc = require('./mathFunctions'); // ./ para dizer que é 'irmão' do app.js, mesmo nível de pastas
 // ../ para voltar
-
 //app.use(bodyParser.json());
-
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views'));
 
 //GET
 app.get('/', function (req, res) {
-    res.send('Oi, mundo :-)');
+    // res.send('Oi, mundo :-)');
+    res.render('index', {
+        title: "Teste"
+    })
 });
 
-//989930202 
 
 //POST
 app.post('/soma', function (req, res) {
@@ -32,12 +36,15 @@ app.post('/testIfPrime', function (req, res) {
     console.log(req.body);
 });
 
+
+
 app.post('/fibonacci', function (req, res) {
     res.send(`${calc.fibonacci(parseInt(req.body.inputNumber))}`);
     console.log(req.body);
 });
 
 app.post('/gcd', function (req, res) {
+    //"/gcd" é a action do html forms 
     var firstNumber = parseInt(req.body.firstNumber);
     var secondNumber = parseInt(req.body.secondNumber);
     res.send(`${calc.gcd(firstNumber, secondNumber)}`);
@@ -51,7 +58,7 @@ app.post('/multiplicacao', function (req, res) {
     console.log(req.body);
 });
 
-//Servidor
+
 var port = 3001;
 app.listen(port, function () {
     console.log(`App de Exemplo escutando na porta http://localhost:${port}/`);
