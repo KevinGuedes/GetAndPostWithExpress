@@ -18,8 +18,13 @@ app.set('views', path.join(__dirname, '/views'));
 app.get('/', function (req, res) {
     // res.send('Oi, mundo :-)');
     res.render('index', {
-        title: "Teste"
+        title: "Teste",
+        x: 3
     })
+});
+app.get('/teste', function (req, res) {
+    // res.send('Oi, mundo :-)');
+    res.render('teste');
 });
 
 
@@ -27,7 +32,11 @@ app.get('/', function (req, res) {
 app.post('/soma', function (req, res) {
     var firstNumber = parseFloat(req.body.firstNumber);
     var secondNumber = parseFloat(req.body.secondNumber);
-    res.send(`${firstNumber} + ${secondNumber} = ${calc.soma(firstNumber, secondNumber)}`);
+    // res.send(`${firstNumber} + ${secondNumber} = ${calc.soma(firstNumber, secondNumber)}`);
+    res.render('index', {
+        title: "Soma",
+        x: calc.soma(firstNumber, secondNumber)
+    })
     console.log(req.body);
 });
 
