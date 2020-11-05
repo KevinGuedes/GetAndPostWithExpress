@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
     // res.send('Oi, mundo :-)');
     res.render('index', {
         title: "Teste",
-        x: 3
+        x: ""
     })
 });
 app.get('/teste', function (req, res) {
